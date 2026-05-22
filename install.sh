@@ -56,6 +56,7 @@ SHA_URL="https://github.com/$REPO/releases/download/$TAG/$SHA_ASSET"
 # --- install dir ---
 if [ -n "${SED_INSTALL_DIR:-}" ]; then
   INSTALL_DIR="$SED_INSTALL_DIR"
+  mkdir -p "$INSTALL_DIR" || { echo "ERROR: can't create $INSTALL_DIR" >&2; exit 3; }
 elif [ -d "$HOME/.local/bin" ] || mkdir -p "$HOME/.local/bin" 2>/dev/null; then
   INSTALL_DIR="$HOME/.local/bin"
 elif [ -w "/usr/local/bin" ]; then
